@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+@import './btn.css';
+@import './textInput.css';
+@import './sideBar.css';
+@import './dialog.css';
+@import './loading.css';
+@layer base {
+  body {
+    background-color: #f1f5f9;
+    font-family: 'Noto Sans', sans-serif;
+    @apply text-slate-900 w-full h-full;
+  }
+}
+@layer components {
+  .main_container {
+    @apply max-w-4xl w-full mx-auto;
+  }
+}
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@theme {
+  --breakpoint-xs: 30rem;
+  --animate-spin: spin 0.5s linear infinite;
+}

@@ -1,0 +1,16 @@
+export type HTTPMethod =
+  | 'get'
+  | 'GET'
+  | 'Get'
+  | 'post'
+  | 'POST'
+  | 'Post'
+  | 'delete'
+  | 'DELETE'
+  | 'Delete'
+  | 'put'
+  | 'PUT'
+  | 'Put'
+  | 'patch'
+  | 'PATCH'
+  | 'Patch';

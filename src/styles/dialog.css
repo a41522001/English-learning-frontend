@@ -1,0 +1,20 @@
+@layer components {
+  .dialog_wrap {
+    @apply min-w-screen w-full min-h-screen h-full bg-black/50 z-100 absolute top-0 left-0 flex-center p-2 transition-opacity duration-300 ease-in-out;
+  }
+  .dialog_content {
+    @apply bg-white p-4 rounded-lg flex flex-col relative text-wrap min-h-30 break-words;
+  }
+  .dialog_title {
+    @apply font-bold text-xl text-zinc-700 mb-2;
+  }
+  .dialog_message {
+    @apply text-zinc-700 mb-3;
+  }
+  .dialog_action {
+    @apply self-end flex gap-3 mt-auto;
+  }
+  .dialog_close_btn {
+    @apply absolute top-[1rem] right-[1rem] text-2xl leading-none cursor-pointer hover:text-zinc-600;
+  }
+}

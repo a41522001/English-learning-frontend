@@ -1,0 +1,8 @@
+@layer utilities {
+  .b-validate-error {
+    @apply text-red-500 font-bold w-full max-w-full break-words text-wrap;
+  }
+  .b-eye-input {
+    @apply absolute top-[50%] -translate-y-[50%] right-1 cursor-pointer flex-center;
+  }
+}

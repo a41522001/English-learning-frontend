@@ -1,0 +1,17 @@
+@layer components {
+  .btn {
+    @apply cursor-pointer rounded inline-flex items-center justify-center font-medium transition duration-150 ease-in-out;
+  }
+  .btn_primary_xl {
+    @apply bg-indigo-600 text-white py-3 px-4 text-sm rounded-lg hover:bg-indigo-700 transition-transform hover:scale-105;
+  }
+  .btn_close {
+    @apply bg-indigo-600 text-white py-2 px-4 text-sm rounded-lg hover:bg-indigo-700 transition-transform hover:scale-105;
+  }
+  /* .btn-primary-lg {
+    @apply btn-primary-source py-3 px-4;
+  }
+  .btn-secondary {
+    @apply btn-secondary-source py-2 px-3 font-semibold hover:font-bold rounded-xl;
+  } */
+}
