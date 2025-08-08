@@ -229,7 +229,7 @@ const broadcastData: BroadcastData[] = [
 ];
 
 const Broadcast = () => {
-  const { apiGetUserinfo } = useApi();
+  const { apiGetUserinfo, apiCheckIsDaily } = useApi();
   const navigate = useNavigate();
   const [user, setUser] = useState<User>(initialUser);
   const handleSelectSubject = (subject: Subject) => {
@@ -242,8 +242,14 @@ const Broadcast = () => {
     });
   };
   const handleGetUserinfo = async () => {
-    const res = await apiGetUserinfo();
-    setUser(res.data.data);
+    const res = await apiCheckIsDaily();
+    const idDaily = res.data.data.isDaily;
+    if (idDaily) {
+      navigate('/');
+    } else {
+      const res1 = await apiGetUserinfo();
+      setUser(res1.data.data);
+    }
   };
   useEffect(() => {
     handleGetUserinfo();

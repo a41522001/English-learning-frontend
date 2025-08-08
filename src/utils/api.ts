@@ -19,7 +19,6 @@ apiClient.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-
     if (error.response.data.code === 401 && originalRequest.url !== 'user/refresh') {
       try {
         const res = await api('user/refresh', 'get');
@@ -32,6 +31,7 @@ apiClient.interceptors.response.use(
         return Promise.reject(error);
       }
     }
+    return Promise.reject(error);
   }
 );
 const api = async (url: string, method: HTTPMethod, data: any = {}, header: any = {}) => {

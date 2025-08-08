@@ -1,10 +1,10 @@
-import { useState, type ChangeEvent } from 'react';
+import { useMemo, useState, type ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TextInput from '@/components/common/TextInput';
 import Btn from '@/components/common/Btn';
 import { useApi } from '@/hooks/useApi';
-import { useDispatch } from 'react-redux';
-import { setAccessToken } from '@/features/authSlice';
+// import { useDispatch } from 'react-redux';
+// import { setAccessToken } from '@/features/authSlice';
 import { useDialog } from '@/contexts/DialogContext';
 
 interface User {
@@ -21,8 +21,8 @@ const Login = () => {
   const { apiLogin } = useApi();
   const { showDialog, hideDialog } = useDialog();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [user, setUser] = useState<User>(initialUser);
+
   const handleUpdateUser = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
@@ -31,37 +31,34 @@ const Login = () => {
     try {
       const res = await apiLogin(user);
       if (res.status === 200) {
-        const { token, message } = res.data;
-        console.log(token);
-        dispatch(setAccessToken(token));
-        showConfirmDialog(message);
+        const { message, data } = res.data;
+        showConfirmDialog(message, false, data.isDaily);
       }
     } catch (error) {
-      showConfirmDialog(error.response.data.message, true);
+      showConfirmDialog(error.response.data.message, true, false);
     }
   };
-  const handleChangePage = () => {
-    navigate('/broadcast');
+  const handleChangePage = (isDaily: boolean) => {
+    const location = isDaily ? '/' : '/broadcast';
+    navigate(location);
   };
 
-  const closeBtn = (
-    <Btn
-      className="btn_close"
-      onClick={() => {
-        handleChangePage();
-        hideDialog();
-      }}
-    >
-      關閉
-    </Btn>
-  );
-
-  const showConfirmDialog = (message: string, isError = false) => {
+  const showConfirmDialog = (message: string, isError = false, isDaily: boolean) => {
     showDialog({
       title: message,
       showCloseBtn: true,
-      children: isError ? null : closeBtn,
-      afterClose: isError ? undefined : handleChangePage,
+      children: isError ? null : (
+        <Btn
+          className="btn_close"
+          onClick={() => {
+            handleChangePage(isDaily);
+            hideDialog();
+          }}
+        >
+          關閉
+        </Btn>
+      ),
+      afterClose: isError ? undefined : () => handleChangePage(isDaily),
     });
   };
   return (

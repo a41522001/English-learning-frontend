@@ -1,15 +1,48 @@
 import { useSearchParams } from 'react-router-dom';
 import Expansion from '../components/common/Expansion';
-import { useCallback, useEffect } from 'react';
+import ExpansionContent from '../components/common/ExpansionContent';
+import { useCallback, useEffect, useState } from 'react';
 import { useApi } from '@/hooks/useApi';
 const Daily = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { apiGetDailyWords } = useApi();
+  const [words, setWords] = useState([]);
+  const { apiGetDailyWords, apiGetWordExample } = useApi();
   const subject = searchParams.get('subject');
+  const handleClick = async (index: number) => {
+    const currentIndex = index - 1;
+    let content = [];
+    if (!words[currentIndex].isOpen) {
+      const res = await apiGetWordExample(words[currentIndex].id);
+      content = res.data.data;
+    }
+    setWords((prepValue) => {
+      return prepValue.map((item, itemIndex) => {
+        if (itemIndex === currentIndex) {
+          return {
+            ...item,
+            isOpen: !item.isOpen,
+            content: content,
+          };
+        }
+        return {
+          ...item,
+        };
+      });
+    });
+  };
   const handleGetDailyWords = async (subject: string) => {
     try {
       const res = await apiGetDailyWords(subject);
-      console.log(res.data);
+      console.log(res.data.data);
+      setWords(() => {
+        return res.data.data.map((item) => {
+          return {
+            ...item,
+            isOpen: false,
+            content: [],
+          };
+        });
+      });
     } catch (error) {
       //
     }
@@ -26,8 +59,16 @@ const Daily = () => {
     <div className="flex flex-col">
       <h2 className="text-slate-800 font-bold text-2xl mb-1">每日單字</h2>
       <p className="text-slate-500 mb-6">今天是你學習新知的最佳時機！</p>
-      <div>
-        <Expansion index={1}></Expansion>
+      <div className="flex flex-col gap-3">
+        {words.map((item, index) => {
+          return (
+            <Expansion index={index + 1} title={item.word} category={item.categoryName} isOpen={item.isOpen} key={item.id} onClick={handleClick}>
+              {item.content.map((item, index) => {
+                return <ExpansionContent key={index} {...item} />;
+              })}
+            </Expansion>
+          );
+        })}
       </div>
     </div>
   );

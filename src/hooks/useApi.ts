@@ -4,9 +4,11 @@ import type { NormalResponse, LoginResponse } from '@/types/response';
 import api from '@/utils/api';
 import type { AxiosResponse } from 'axios';
 import { useLoading } from '@/contexts/LoadingContext';
+import { useState } from 'react';
 
 export const useApi = () => {
   const { setLoading } = useLoading();
+  const [loadFlag, setLoadingFlag] = useState<boolean>(true);
 
   /**
    * 通用的請求發送器，會直接回傳回應中的 `data` 部分，並妥善處理型別。
@@ -20,7 +22,9 @@ export const useApi = () => {
    */
   const sendApi = async <Res, Req>(url: string, method: HTTPMethod, data?: Req, header?: any): Promise<AxiosResponse<Res>> => {
     try {
-      setLoading(true);
+      if (loadFlag) {
+        setLoading(true);
+      }
       const response = await api(url, method, data, header);
       if (!response) {
         throw new Error(`${url} has error`);
@@ -47,14 +51,25 @@ export const useApi = () => {
   const apiGetUserinfo = async () => {
     return await sendApi('user/userinfo', 'get');
   };
+  // 確認是否取得每日單字
+  const apiCheckIsDaily = async () => {
+    return await sendApi('word/checkIsDaily', 'get');
+  };
   // 取得每日主題單字API
   const apiGetDailyWords = async (subject: string | null) => {
     return await sendApi(`word/subjectWords?subject=${subject}`, 'get');
+  };
+  // 取得單字例句
+  const apiGetWordExample = async (wordId: string) => {
+    setLoadingFlag(false);
+    return await sendApi(`word/wordExample?wordId=${wordId}`, 'get');
   };
   return {
     apiSignup,
     apiLogin,
     apiGetUserinfo,
     apiGetDailyWords,
+    apiGetWordExample,
+    apiCheckIsDaily,
   };
 };
