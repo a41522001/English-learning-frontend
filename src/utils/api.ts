@@ -25,9 +25,11 @@ apiClient.interceptors.response.use(
         if (res.status === 200) {
           return apiClient(originalRequest);
         } else {
+          window.location.href = '/login';
           return Promise.reject(error);
         }
       } catch (error) {
+        window.location.href = '/login';
         return Promise.reject(error);
       }
     }

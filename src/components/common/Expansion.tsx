@@ -1,32 +1,39 @@
 import React from 'react';
 import clsx from 'clsx';
+import LearnedBtn from './LearnedBtn';
+import Badge from './Badge';
 interface Props {
+  id: string;
   index: number;
   children: React.ReactNode;
   title: string;
   category: string;
   isOpen: boolean;
+  learned: boolean;
   onClick: (index: number) => void;
+  onChangeLearned: (wordId: string, isLearned: boolean) => void;
 }
-
-const Expansion = ({ index, children, title, category, isOpen, onClick }: Props) => {
+const Expansion = ({ index, children, title, category, isOpen, onClick, learned, onChangeLearned, id }: Props) => {
   return (
-    <div className="border border-slate-200/80 rounded-xl bg-white hover:border-indigo-500 transition-all duration-300">
-      <div className="flex items-center cursor-pointer p-4" onClick={() => onClick(index)}>
-        <div className="w-8 h-8 bg-indigo-50 border border-indigo-200 rounded-full flex items-center justify-center text-indigo-500 font-xs me-3">{index}</div>
-        <div>
-          <div className="mb-1 font-bold">{title}</div>
-          <div className="rounded-full bg-slate-100 text-slate-500 px-2 py-1 text-xs">{category}</div>
+    <div className="expansion">
+      <div className="expansion_main" onClick={() => onClick(index)}>
+        <div className="expansion_index">{index}</div>
+        <div className="expansion_title_wrap">
+          <div className="expansion_title">{title}</div>
+          <Badge className="text-xs py-1" bgColorClass="bg-slate-100" textColorClass="text-slate-500">
+            {category}
+          </Badge>
         </div>
+        <LearnedBtn isLearned={learned} wordId={id} onChange={onChangeLearned} />
         <span
-          className={clsx('material-symbols-outlined ms-auto text-slate-500 transition-transform duration-300', {
+          className={clsx('material-symbols-outlined expansion_arrow', {
             'rotate-180': isOpen,
           })}
         >
           keyboard_arrow_down
         </span>
       </div>
-      {isOpen && <div className="border-t border-slate-200 p-4 bg-slate-50 rounded-b-xl">{children}</div>}
+      {isOpen && <div className="expansion_list">{children}</div>}
     </div>
   );
 };

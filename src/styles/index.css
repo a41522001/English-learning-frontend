@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
-@import './btn.css';
-@import './textInput.css';
-@import './sideBar.css';
-@import './dialog.css';
-@import './loading.css';
+@import './component/btn.css';
+@import './component/textInput.css';
+@import './component/dialog.css';
+@import './component/loading.css';
+@import './component/learnedBtn.css';
+@import './component/expansion.css';
+@import './component/logoutBtn.css';
+@import './page/sideBar.css';
+@import './page/daily.css';
 @layer base {
   body {
     background-color: #f1f5f9;

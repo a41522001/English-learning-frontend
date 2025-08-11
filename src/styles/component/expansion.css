@@ -1,0 +1,23 @@
+@layer components {
+  .expansion {
+    @apply border border-slate-200/80 rounded-xl bg-white hover:border-indigo-500 transition-all duration-300;
+  }
+  .expansion_main {
+    @apply flex items-center cursor-pointer p-2 md:p-4;
+  }
+  .expansion_index {
+    @apply w-8 h-8 bg-indigo-50 border border-indigo-200 rounded-full flex-center text-indigo-500 me-3;
+  }
+  .expansion_title_wrap {
+    @apply me-auto;
+  }
+  .expansion_title {
+    @apply mb-1 font-bold;
+  }
+  .expansion_arrow {
+    @apply text-slate-500 transition-transform duration-300;
+  }
+  .expansion_list {
+    @apply border-t border-slate-200 p-2 md:p-4 bg-slate-50 rounded-b-xl;
+  }
+}

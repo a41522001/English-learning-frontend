@@ -1,6 +1,14 @@
 import type { HTTPMethod } from '@/types';
-import type { SignupRequest, LoginRequest } from '@/types/request';
-import type { NormalResponse, LoginResponse } from '@/types/response';
+import type { SignupRequest, LoginRequest, saveLearnedWordRequest } from '@/types/request';
+import type {
+  NormalResponse,
+  LoginResponse,
+  DailyWordResponse,
+  WordExampleResponse,
+  CheckDailyResponse,
+  UserinfoResponse,
+  SubjectCategoryResponse,
+} from '@/types/response';
 import api from '@/utils/api';
 import type { AxiosResponse } from 'axios';
 import { useLoading } from '@/contexts/LoadingContext';
@@ -43,33 +51,69 @@ export const useApi = () => {
   const apiSignup = async (data: SignupRequest): Promise<AxiosResponse<NormalResponse>> => {
     return await sendApi<NormalResponse, SignupRequest>('user/signup', 'post', data);
   };
+
   // 登入API
   const apiLogin = async (data: LoginRequest): Promise<AxiosResponse<LoginResponse>> => {
     return await sendApi<LoginResponse, LoginRequest>('user/login', 'post', data);
   };
+
+  // 登出API
+  const apiLogout = async (): Promise<AxiosResponse<NormalResponse>> => {
+    return await sendApi<NormalResponse, null>('user/logout', 'get');
+  };
+
   // 取得使用者資訊API
-  const apiGetUserinfo = async () => {
-    return await sendApi('user/userinfo', 'get');
+  const apiGetUserinfo = async (): Promise<AxiosResponse<UserinfoResponse>> => {
+    return await sendApi<UserinfoResponse, null>('user/userinfo', 'get');
+  };
+
+  // 取得主題類別
+  const apiGetSubjectCategory = async (): Promise<AxiosResponse<SubjectCategoryResponse>> => {
+    return await sendApi<SubjectCategoryResponse, null>('word/subjectCategory', 'get');
   };
   // 確認是否取得每日單字
-  const apiCheckIsDaily = async () => {
-    return await sendApi('word/checkIsDaily', 'get');
+  const apiCheckIsDaily = async (): Promise<AxiosResponse<CheckDailyResponse>> => {
+    return await sendApi<CheckDailyResponse, null>('word/checkIsDaily', 'get');
   };
+
   // 取得每日主題單字API
-  const apiGetDailyWords = async (subject: string | null) => {
-    return await sendApi(`word/subjectWords?subject=${subject}`, 'get');
+  const apiGetDailyWords = async (subject: string | null): Promise<AxiosResponse<DailyWordResponse>> => {
+    return await sendApi<DailyWordResponse, string>(`word/subjectWords?subject=${subject}`, 'get');
   };
+
   // 取得單字例句
-  const apiGetWordExample = async (wordId: string) => {
+  const apiGetWordExample = async (wordId: string): Promise<AxiosResponse<WordExampleResponse>> => {
     setLoadingFlag(false);
-    return await sendApi(`word/wordExample?wordId=${wordId}`, 'get');
+    return await sendApi<WordExampleResponse, string>(`word/wordExample?wordId=${wordId}`, 'get');
+  };
+
+  // 儲存已學過單字
+  const apiSaveLearnedWord = async (data: saveLearnedWordRequest): Promise<AxiosResponse<NormalResponse>> => {
+    setLoadingFlag(false);
+    return await sendApi<NormalResponse, saveLearnedWordRequest>('word/saveLearnedWord', 'post', data);
+  };
+
+  // 刪除已學過單字
+  const apiDeleteLearnedWord = async (wordId: string): Promise<AxiosResponse<NormalResponse>> => {
+    setLoadingFlag(false);
+    return await sendApi<NormalResponse, null>(`word/learnedWord/${wordId}`, 'delete');
+  };
+
+  // 取得已學過單字
+  const apiGetLearnedWords = async () => {
+    return await sendApi('word/learnedWords', 'get');
   };
   return {
     apiSignup,
     apiLogin,
+    apiLogout,
     apiGetUserinfo,
     apiGetDailyWords,
     apiGetWordExample,
     apiCheckIsDaily,
+    apiSaveLearnedWord,
+    apiDeleteLearnedWord,
+    apiGetLearnedWords,
+    apiGetSubjectCategory,
   };
 };

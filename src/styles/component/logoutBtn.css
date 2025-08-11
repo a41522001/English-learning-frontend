@@ -1,0 +1,5 @@
+@layer components {
+  .logout_btn {
+    @apply cursor-pointer absolute top-2 right-2 flex items-center gap-1 px-2 py-1 text-sm rounded-md text-gray-600 md:top-4 md:right-4 hover:bg-gray-100 hover:text-gray-500;
+  }
+}
