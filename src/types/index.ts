@@ -21,7 +21,6 @@ export interface User {
   id: string;
   created_at: Date;
 }
-
 // 主題類別
 export interface SubjectCategory {
   bgColor: string;
@@ -49,4 +48,18 @@ export interface WordExample {
   exampleSentenceZn: string;
   meanZh: string;
   partOfSpeech: string;
+}
+// 已學過單字
+export interface LearnedWord {
+  wordId: string;
+  learnAt: Date;
+  word: string;
+  pronunciation?: string;
+  category: string;
+  categoryName: string;
+}
+// 徽章顏色
+export interface BadgeColor {
+  bgColorClass: string;
+  textColorClass: string;
 }

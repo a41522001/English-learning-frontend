@@ -1,5 +1,5 @@
 import type { HTTPMethod } from '@/types';
-import type { SignupRequest, LoginRequest, saveLearnedWordRequest } from '@/types/request';
+import type { SignupRequest, LoginRequest, saveLearnedWordRequest, learnedWordsPageRequest } from '@/types/request';
 import type {
   NormalResponse,
   LoginResponse,
@@ -8,6 +8,8 @@ import type {
   CheckDailyResponse,
   UserinfoResponse,
   SubjectCategoryResponse,
+  LearnedWordResponse,
+  LearnedWordCountResponse,
 } from '@/types/response';
 import api from '@/utils/api';
 import type { AxiosResponse } from 'axios';
@@ -100,8 +102,18 @@ export const useApi = () => {
   };
 
   // 取得已學過單字
-  const apiGetLearnedWords = async () => {
-    return await sendApi('word/learnedWords', 'get');
+  const apiGetLearnedWords = async (): Promise<AxiosResponse<LearnedWordResponse>> => {
+    return await sendApi<LearnedWordResponse, null>('word/learnedWords', 'get');
+  };
+
+  // 取得已學過單字(分頁)
+  const apiGetLearnedWordsPage = async ({ itemPerPage, page }: learnedWordsPageRequest): Promise<AxiosResponse<LearnedWordResponse>> => {
+    return await sendApi<LearnedWordResponse, learnedWordsPageRequest>(`word/learnedWordsPage?itemPerPage=${itemPerPage}&page=${page}`, 'get');
+  };
+
+  // 取得已學過單字的數量
+  const apiGetLearnedWordCount = async (): Promise<AxiosResponse<LearnedWordCountResponse>> => {
+    return await sendApi<LearnedWordCountResponse, null>('word/learnedWordCount', 'get');
   };
   return {
     apiSignup,
@@ -114,6 +126,8 @@ export const useApi = () => {
     apiSaveLearnedWord,
     apiDeleteLearnedWord,
     apiGetLearnedWords,
+    apiGetLearnedWordsPage,
     apiGetSubjectCategory,
+    apiGetLearnedWordCount,
   };
 };

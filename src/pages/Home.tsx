@@ -13,6 +13,7 @@ const Home = () => {
       navigate('/login');
     }
   };
+
   return (
     <div className="flex flex-col-reverse md:flex-row min-h-screen md:min-h-auto">
       <div className="relative bg-white md:min-h-screen md:h-auto">

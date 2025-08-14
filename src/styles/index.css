@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
+/* 因api抓取動態顏色關係 所以須新增編譯後的utility */
+@source inline("bg-teal-300 group-hover:bg-teal-400 text-teal-500");
+@source inline("bg-lime-300 group-hover:bg-lime-400 text-lime-500");
+@source inline("bg-red-300 group-hover:bg-red-400 text-red-500");
+@source inline("bg-pink-300 group-hover:bg-pink-400 text-pink-500");
+@source inline("bg-rose-300 group-hover:bg-rose-400 text-rose-500");
+@source inline("bg-orange-300 group-hover:bg-orange-400 text-orange-500");
+@source inline("bg-yellow-200 group-hover:bg-yellow-300 text-yellow-500");
+@source inline("bg-amber-300 group-hover:bg-amber-400 text-amber-500");
+@source inline("bg-gray-300 group-hover:bg-gray-400 text-gray-500");
+@source inline("bg-zinc-300 group-hover:bg-zinc-400 text-zinc-500");
+@source inline("bg-blue-300 group-hover:bg-blue-400 text-blue-500");
+@source inline("bg-slate-300 group-hover:bg-slate-400 text-slate-500");
+@source inline("bg-purple-300 group-hover:bg-purple-400 text-purple-500");
+@source inline("bg-emerald-300 group-hover:bg-emerald-400 text-emerald-500");
+@source inline("bg-indigo-300 group-hover:bg-indigo-400 text-indigo-500");
+@source inline("bg-cyan-300 group-hover:bg-cyan-400 text-cyan-500");
+@source inline("bg-green-300 group-hover:bg-green-400 text-green-500");
+@source inline("bg-stone-300 group-hover:bg-stone-400 text-stone-500");
+@source inline("bg-sky-300 group-hover:bg-sky-400 text-sky-500");
 @import './component/btn.css';
 @import './component/textInput.css';
 @import './component/dialog.css';
@@ -7,8 +27,10 @@
 @import './component/learnedBtn.css';
 @import './component/expansion.css';
 @import './component/logoutBtn.css';
+@import './component/table.css';
 @import './page/sideBar.css';
 @import './page/daily.css';
+@import './page/learned.css';
 @layer base {
   body {
     background-color: #f1f5f9;

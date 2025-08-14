@@ -1,4 +1,4 @@
-import type { DailyWord, WordExample, SubjectCategory, User } from './index';
+import type { DailyWord, WordExample, SubjectCategory, User, LearnedWord } from './index';
 interface Response<T> {
   code: number;
   data: T;
@@ -20,3 +20,7 @@ export interface CheckDailyResponse extends Response<{ isDaily: boolean }> {}
 export interface UserinfoResponse extends Response<User> {}
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface SubjectCategoryResponse extends Response<SubjectCategory[]> {}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface LearnedWordResponse extends Response<LearnedWord[]> {}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface LearnedWordCountResponse extends Response<{ count: number }> {}

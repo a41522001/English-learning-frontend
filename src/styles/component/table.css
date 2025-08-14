@@ -1,0 +1,14 @@
+@layer components {
+  .table_wrap {
+    @apply border rounded-md;
+  }
+  .table_row {
+    @apply border-b last:border-b-0 hover:bg-slate-200/40;
+  }
+  .table_space {
+    @apply px-6 py-4;
+  }
+  .current_row {
+    @apply bg-blue-500/90 text-white hover:bg-blue-500/90;
+  }
+}

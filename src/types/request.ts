@@ -10,3 +10,7 @@ export interface LoginRequest {
 export interface saveLearnedWordRequest {
   wordId: string | string[];
 }
+export interface learnedWordsPageRequest {
+  itemPerPage: number;
+  page: number;
+}

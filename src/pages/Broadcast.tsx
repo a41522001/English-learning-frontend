@@ -3,6 +3,7 @@ import { createSearchParams, useNavigate } from 'react-router-dom';
 import BroadcastCard from '../components/common/BroadcastCard';
 import { useApi } from '@/hooks/useApi';
 import type { SubjectCategory, User } from '@/types';
+import LogoutBtn from '@/components/common/LogoutBtn';
 const initialUser = {
   username: '',
   email: '',
@@ -11,7 +12,7 @@ const initialUser = {
 };
 
 const Broadcast = () => {
-  const { apiGetUserinfo, apiCheckIsDaily, apiGetSubjectCategory } = useApi();
+  const { apiGetUserinfo, apiCheckIsDaily, apiGetSubjectCategory, apiLogout } = useApi();
   const navigate = useNavigate();
   const [user, setUser] = useState<User>(initialUser);
   const [category, setCategory] = useState<SubjectCategory[]>([]);
@@ -36,6 +37,13 @@ const Broadcast = () => {
       setCategory(resCategory.data.data);
     }
   };
+
+  const handleLogout = async () => {
+    const res = await apiLogout();
+    if (res.status === 200) {
+      navigate('/login');
+    }
+  };
   useEffect(() => {
     handleGetUserinfo();
   }, []);
@@ -46,7 +54,7 @@ const Broadcast = () => {
           <div className="flex">
             <h1 className="text-xl font-bold text-slate-900">單字方舟</h1>
           </div>
-          <div></div>
+          <LogoutBtn onClick={handleLogout} />
         </div>
       </header>
       <main className="grow flex-center py-10">
@@ -66,7 +74,7 @@ const Broadcast = () => {
                   iconColor={iconColor}
                   key={index}
                   onClick={(subject: string) => handleSelectSubject(subject)}
-                ></BroadcastCard>
+                />
               );
             })}
           </div>
