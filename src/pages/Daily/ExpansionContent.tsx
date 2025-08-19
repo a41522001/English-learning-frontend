@@ -1,4 +1,4 @@
-import Badge from './Badge';
+import Badge from '../../components/common/Badge';
 interface Props {
   exampleSentenceEn: string;
   exampleSentenceZn: string;
@@ -7,8 +7,8 @@ interface Props {
 }
 const ExpansionContent = ({ exampleSentenceEn, exampleSentenceZn, meanZh, partOfSpeech }: Props) => {
   return (
-    <div className="expansion_content_wrap">
-      <div className="expansion_content_outline">
+    <div className="daily_expansion_content_wrap">
+      <div className="daily_expansion_content_outline">
         <p className="text-slate-800">{meanZh}</p>
         <Badge bgColorClass="bg-indigo-100" textColorClass="text-indigo-800">
           {partOfSpeech}

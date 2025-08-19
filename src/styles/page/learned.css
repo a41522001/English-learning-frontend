@@ -1,14 +1,48 @@
-@layer components {
-  .learned_wrap {
-    @apply flex flex-col;
-  }
-  .learned_title {
-    @apply text-slate-800 font-bold text-2xl mb-1;
-  }
-  .learned_subtitle {
-    @apply flex mb-4 md:mb-6 gap-3 flex-col sm:items-center sm:justify-between sm:flex-row;
-  }
-  .review_btn {
-    @apply cursor-pointer text-indigo-600 hover:text-indigo-500 group-data-[active=true]:text-white group-data-[active=true]:hover:text-white/90;
-  }
+.learned_wrap {
+  @apply flex flex-col;
+}
+.learned_title {
+  @apply text-slate-800 font-bold text-2xl mb-1;
+}
+.learned_subtitle {
+  @apply flex mb-4 md:mb-6 gap-3 flex-col sm:items-center sm:justify-between sm:flex-row;
+}
+.learned_search {
+  @apply px-3 py-2 bg-white border-slate-300 focus:outline-indigo-400;
+}
+.review_btn {
+  @apply cursor-pointer text-indigo-600 hover:text-indigo-500 group-data-[active=true]:text-white group-data-[active=true]:hover:text-white/90;
+}
+.review_card {
+  @apply border border-slate-200 rounded-lg bg-white w-70 sm:w-80 flex flex-col;
+}
+.review_card_wrap {
+  @apply flex flex-col gap-5 border-b border-slate-200 p-6;
+}
+.review_card_date {
+  @apply text-xs text-slate-500 ms-auto;
+}
+.review_card_word {
+  @apply font-bold text-3xl;
+}
+.review_card_ul {
+  @apply p-6 overflow-y-auto max-h-150;
+}
+.review_card_list {
+  @apply flex flex-col gap-6;
+}
+.review_card_list_base {
+  @apply border-b-1 border-slate-200 pb-3 mb-3;
+}
+.review_card_mean {
+  @apply text-sm font-semibold text-slate-700;
+}
+.review_card_sentence {
+  @apply text-sm font-semibold text-slate-700;
+}
+.review_card_speech_wrap {
+  @apply flex gap-1 text-sm;
+}
+.review_card_speech {
+  @apply font-semibold text-slate-700;
 }

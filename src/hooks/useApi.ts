@@ -10,6 +10,7 @@ import type {
   SubjectCategoryResponse,
   LearnedWordResponse,
   LearnedWordCountResponse,
+  FavoriteWordCountResponse,
 } from '@/types/response';
 import api from '@/utils/api';
 import type { AxiosResponse } from 'axios';
@@ -122,9 +123,10 @@ export const useApi = () => {
   };
 
   // 取得我的最愛單字
-  const apiGetFavoriteWord = async () => {
-    return await sendApi('word/favoriteWord', 'get');
+  const apiGetFavoriteWord = async (): Promise<AxiosResponse<FavoriteWordCountResponse>> => {
+    return await sendApi<FavoriteWordCountResponse, null>('word/favoriteWord', 'get');
   };
+
   return {
     apiSignup,
     apiLogin,

@@ -1,8 +1,0 @@
-@layer components {
-  .expansion_content_wrap {
-    @apply bg-white p-4 border border-slate-200/80 rounded-xl last:mb-0 mb-3;
-  }
-  .expansion_content_outline {
-    @apply flex justify-between mb-3 rounded-lg;
-  }
-}

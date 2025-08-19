@@ -170,13 +170,7 @@ const Learned = () => {
       <h2 className="learned_title">已學單字</h2>
       <div className="learned_subtitle">
         <p className="text-slate-500">溫故而知新，在這裡回顧你的學習足跡。</p>
-        <TextInput
-          className="px-3 py-2 bg-white border-slate-300 focus:outline-indigo-400"
-          value={search}
-          onChange={handleSetSearch}
-          type="text"
-          placeholder="搜索..."
-        />
+        <TextInput className="learned_search" value={search} onChange={handleSetSearch} type="text" placeholder="搜索..." />
       </div>
       <div className="flex-col-gap-3">
         <Table headers={viewHeaders} items={words} borderColor="slate-200/80" extraConfig={extraConfig} slots={slots} ref={tableRef} />

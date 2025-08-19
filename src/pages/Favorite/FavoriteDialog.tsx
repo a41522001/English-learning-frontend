@@ -1,13 +1,15 @@
 import Btn from '@/components/common/Btn';
+import type { WordExample } from '@/types';
 import ReactDOM from 'react-dom';
 interface Props {
   word: string;
   id: string;
   isOpen: boolean;
-  examples: [];
+  examples: WordExample[];
   onClose: () => void;
+  onCancel: (wordId: string) => void;
 }
-const FavoriteDialog = ({ isOpen, word, id, examples, onClose }: Props) => {
+const FavoriteDialog = ({ isOpen, word, id, examples, onClose, onCancel }: Props) => {
   if (!isOpen) {
     return null;
   }
@@ -16,22 +18,27 @@ const FavoriteDialog = ({ isOpen, word, id, examples, onClose }: Props) => {
       <div className="favorite_dialog_content">
         <div className="favorite_dialog_header">
           <h3 className="favorite_dialog_title">{word}</h3>
-          <div className="ms-auto flex items-center gap-3">
-            <Btn>取消收藏</Btn>
-            <Btn onClick={onClose}>關閉</Btn>
+          <div className="favorite_dialog_btn_wrap">
+            <Btn className="favorite_dialog_cancel_btn" onClick={() => onCancel(id)}>
+              <span className="material-symbols-outlined filled !text-base me-1">favorite</span>
+              取消收藏
+            </Btn>
+            <Btn className="favorite_dialog_close_btn" onClick={onClose}>
+              關閉
+            </Btn>
           </div>
         </div>
-        <ul className="px-6 py-5 flex-col-gap-3">
+        <ul className="favorite_dialog_ul">
           {examples.map((item, index) => {
             return (
-              <li className="border border-slate-200 rounded-lg " key={index}>
-                <div className="px-4 py-3 rounded-t-lg bg-slate-50 flex items-center gap-2">
-                  <span className="rounded bg-slate-100 px-1.5 py-0.5 text-xs">{item.partOfSpeech}</span>
-                  <span className="text-slate-700 text-sm">{item.meanZh}</span>
+              <li className="favorite_dialog_li" key={index}>
+                <div className="favorite_dialog_li_header">
+                  <span className="favorite_dialog_li_speech">{item.partOfSpeech}</span>
+                  <span className="favorite_dialog_li_mean">{item.meanZh}</span>
                 </div>
-                <div className="px-5 py-4 rounded-b-lg flex-col-gap-1">
+                <div className="favorite_dialog_li_content">
                   <p>{item.exampleSentenceEn}</p>
-                  <p className="text-slate-500 text-sm">{item.exampleSentenceZn}</p>
+                  <p className="favorite_dialog_li_content_sentence">{item.exampleSentenceZn}</p>
                 </div>
               </li>
             );

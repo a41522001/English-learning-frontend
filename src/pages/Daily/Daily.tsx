@@ -1,6 +1,6 @@
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import Expansion from '../../components/common/Expansion';
-import ExpansionContent from '../../components/common/ExpansionContent';
+import Expansion from './Expansion';
+import ExpansionContent from './ExpansionContent';
 import { useEffect, useState } from 'react';
 import { useApi } from '@/hooks/useApi';
 import Btn from '../../components/common/Btn';

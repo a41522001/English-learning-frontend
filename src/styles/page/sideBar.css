@@ -1,25 +1,23 @@
-@layer components {
-  .side_bar {
-    @apply bg-white border-r border-slate-200 w-full sticky top-0 md:w-50 lg:w-64;
-  }
-  .side_bar_title_container {
-    @apply hidden md:flex px-6 py-3 border-b border-slate-200;
-  }
-  .side_bar_title {
-    @apply text-slate-900 font-bold text-xl;
-  }
-  .side_bar_logo {
-  }
-  .side_bar_ul {
-    @apply flex flex-row md:flex-col;
-  }
-  .side_bar_li {
-    @apply grow;
-  }
-  .side_bar_link {
-    @apply text-slate-600 font-medium w-full flex md:flex-row items-center flex-col px-4 py-2 rounded-xl cursor-pointer gap-3 group-hover:text-indigo-600 md:group-hover:text-slate-900 md:group-hover:bg-slate-100;
-  }
-  .side_bar_current_link {
-    @apply text-indigo-600 md:bg-indigo-600 md:text-white md:group-hover:text-white md:group-hover:bg-indigo-600;
-  }
+.side_bar {
+  @apply bg-white border-r border-slate-200 w-full sticky top-0 md:w-50 lg:w-64;
+}
+.side_bar_title_container {
+  @apply hidden md:flex px-6 py-3 border-b border-slate-200;
+}
+.side_bar_title {
+  @apply text-slate-900 font-bold text-xl;
+}
+.side_bar_logo {
+}
+.side_bar_ul {
+  @apply flex flex-row md:flex-col;
+}
+.side_bar_li {
+  @apply grow;
+}
+.side_bar_link {
+  @apply text-slate-600 font-medium w-full flex md:flex-row items-center flex-col px-4 py-2 rounded-xl cursor-pointer gap-3 group-hover:text-indigo-600 md:group-hover:text-slate-900 md:group-hover:bg-slate-100;
+}
+.side_bar_current_link {
+  @apply text-indigo-600 md:bg-indigo-600 md:text-white md:group-hover:text-white md:group-hover:bg-indigo-600;
 }

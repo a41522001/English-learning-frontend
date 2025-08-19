@@ -6,3 +6,8 @@
     @apply absolute top-[50%] -translate-y-[50%] right-1 cursor-pointer flex-center;
   }
 }
+@layer utilities {
+  .flex-col-gap-1 {
+    @apply flex flex-col gap-1;
+  }
+}

@@ -1,20 +1,72 @@
-@layer components {
-  .favorite_wrap {
-    @apply flex flex-col;
-  }
-  .favorite_title {
-    @apply text-slate-800 font-bold text-2xl mb-1;
-  }
-  .favorite_dialog_wrap {
-    @apply min-w-screen w-full min-h-screen h-full bg-black/50 z-100 fixed top-0 left-0 flex-center p-2 transition-opacity duration-300 ease-in-out;
-  }
-  .favorite_dialog_content {
-    @apply bg-white rounded-lg flex flex-col relative text-wrap min-h-30 break-words w-full max-w-[40rem];
-  }
-  .favorite_dialog_header {
-    @apply flex py-4 px-6 border-b border-slate-200;
-  }
-  .favorite_dialog_title {
-    @apply text-slate-800 font-bold text-2xl mb-1;
-  }
+.favorite_wrap {
+  @apply flex flex-col;
+}
+.favorite_title {
+  @apply text-slate-800 font-bold text-2xl mb-1;
+}
+.favorite_subtitle {
+  @apply flex mb-4 md:mb-6 gap-3 flex-col sm:items-center sm:justify-between sm:flex-row;
+}
+.favorite_search {
+  @apply px-3 py-2 bg-white border-slate-300 focus:outline-indigo-400;
+}
+.favorite_content {
+  @apply grid xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bg-white border border-slate-200 rounded-2xl p-7 xs:p-4 max-h-[45rem] overflow-auto;
+}
+.favorite_card {
+  @apply border border-slate-200 rounded-2xl p-5 xxs:p-8 xs:p-5 flex flex-col shadow-sm transition hover:border-indigo-500;
+}
+.favorite_card_title {
+  @apply border-b border-slate-200 pb-4 mb-4 text-lg font-bold text-slate-900;
+}
+.favorite_card_content {
+  @apply flex items-center justify-between;
+}
+.favorite_card_collect {
+  @apply text-rose-600 text-xs flex items-center cursor-pointer hover:text-rose-500;
+}
+.favorite_card_detail {
+  @apply self-end cursor-pointer text-sm font-semibold flex items-center text-indigo-600 hover:text-indigo-500;
+}
+.favorite_dialog_wrap {
+  @apply min-w-screen w-full min-h-screen h-full bg-black/50 z-100 fixed top-0 left-0 flex-center p-2 transition-opacity duration-300 ease-in-out;
+}
+.favorite_dialog_content {
+  @apply bg-white rounded-lg flex flex-col relative text-wrap min-h-30 break-words w-full max-w-[40rem];
+}
+.favorite_dialog_header {
+  @apply flex py-4 px-6 border-b border-slate-200;
+}
+.favorite_dialog_title {
+  @apply text-slate-800 font-bold text-2xl mb-1;
+}
+.favorite_dialog_btn_wrap {
+  @apply ms-auto flex items-center gap-3;
+}
+.favorite_dialog_cancel_btn {
+  @apply border border-rose-200 rounded-lg px-3 py-1.5 text-rose-600 hover:bg-rose-50;
+}
+.favorite_dialog_close_btn {
+  @apply border border-slate-200 rounded-lg px-3 py-1.5 text-slate-700 hover:bg-slate-50;
+}
+.favorite_dialog_ul {
+  @apply px-6 py-5 flex-col-gap-3;
+}
+.favorite_dialog_li {
+  @apply border border-slate-200 rounded-lg;
+}
+.favorite_dialog_li_header {
+  @apply px-4 py-3 rounded-t-lg bg-slate-50 flex items-center gap-2;
+}
+.favorite_dialog_li_speech {
+  @apply rounded bg-slate-100 px-1.5 py-0.5 text-xs;
+}
+.favorite_dialog_li_mean {
+  @apply text-slate-700 text-sm;
+}
+.favorite_dialog_li_content {
+  @apply px-5 py-4 rounded-b-lg flex-col-gap-1;
+}
+.favorite_dialog_li_content_sentence {
+  @apply text-slate-500 text-sm;
 }

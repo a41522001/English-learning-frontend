@@ -72,3 +72,15 @@ export interface ReviewCardType {
   word: string;
   wordExamples: WordExample[];
 }
+// 我的最愛單字
+export interface FavoriteWord {
+  id: string;
+  pronunciation: string;
+  word: string;
+}
+// 我的最愛例句
+export interface FavoriteExample {
+  word: string;
+  id: string;
+  examples: WordExample[];
+}
