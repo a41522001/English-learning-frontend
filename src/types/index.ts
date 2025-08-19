@@ -57,9 +57,18 @@ export interface LearnedWord {
   pronunciation?: string;
   category: string;
   categoryName: string;
+  favorite: boolean;
 }
 // 徽章顏色
 export interface BadgeColor {
   bgColorClass: string;
   textColorClass: string;
+}
+// 複習卡片
+export interface ReviewCardType {
+  category: string;
+  categoryName: string;
+  learnAt: string;
+  word: string;
+  wordExamples: WordExample[];
 }

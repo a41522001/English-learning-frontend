@@ -14,3 +14,7 @@ export interface learnedWordsPageRequest {
   itemPerPage: number;
   page: number;
 }
+export interface favoriteStatus {
+  wordId: string;
+  status: boolean;
+}

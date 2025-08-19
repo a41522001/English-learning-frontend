@@ -32,7 +32,7 @@ export interface Append {
   title: string;
   key: string;
   textAlign?: TextAlign;
-  child?: ReactNode;
+  child?: ReactNode | ((item: Item, rowIndex: number) => React.ReactNode);
 }
 export interface ViewAppend extends Append {
   align: TextAlign;
@@ -41,7 +41,7 @@ export interface Prepend {
   title: string;
   key: string;
   textAlign?: TextAlign;
-  child?: ReactNode;
+  child?: ReactNode | ((item: Item, rowIndex: number) => React.ReactNode);
 }
 export interface ViewPrepend extends Prepend {
   align: TextAlign;

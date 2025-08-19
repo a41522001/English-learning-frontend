@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import Badge from './Badge';
+import Badge from '../../components/common/Badge';
 import React from 'react';
 interface Props {
   wordId: string;

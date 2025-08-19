@@ -1,0 +1,14 @@
+@layer components {
+  .drawer {
+    @apply min-w-screen w-full min-h-screen h-full overflow-hidden bg-black/50 z-100 fixed inset-0 p-2 transition-opacity duration-300 ease-in-out;
+  }
+  .drawer_wrap {
+    @apply bg-white absolute p-4 transition-transform duration-300;
+  }
+  .drawer_header {
+    @apply flex justify-between;
+  }
+  .drawer_title {
+    @apply font-bold;
+  }
+}

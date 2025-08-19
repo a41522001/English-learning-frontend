@@ -1,0 +1,23 @@
+@utility pagination_action_btn {
+  @apply py-1 cursor-pointer border flex-center border-gray-300 text-gray-600 hover:bg-blue-100 disabled:opacity-40 disabled:cursor-not-allowed;
+}
+@layer components {
+  .pagination_wrap {
+    @apply flex justify-center;
+  }
+  .pagination_prev_btn {
+    @apply pr-2 pl-3 rounded-l-md pagination_action_btn;
+  }
+  .pagination_next_btn {
+    @apply pr-3 pl-2 rounded-r-md pagination_action_btn;
+  }
+  .pagination_btn {
+    @apply cursor-pointer py-1 px-3 border-1 flex-center border-gray-300 not-first:border-l-transparent hover:bg-blue-100;
+  }
+  .pagination_btn_active {
+    @apply bg-blue-200 font-semibold text-blue-800;
+  }
+  .pagination_btn_base {
+    @apply text-gray-700;
+  }
+}

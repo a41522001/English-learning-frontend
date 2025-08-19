@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import SideBar from '../layout/SideBar';
-import LogoutBtn from '../components/common/LogoutBtn';
+import SideBar from '../../layout/SideBar';
+import LogoutBtn from '../../components/common/LogoutBtn';
 import { useApi } from '@/hooks/useApi';
 import { useNavigate } from 'react-router-dom';
 const Home = () => {

@@ -1,24 +1,5 @@
 import { useState, forwardRef, useImperativeHandle, useRef } from 'react';
-type Rule = (value: string) => string | boolean;
-type Type = 'text' | 'password' | 'email';
-interface Props {
-  value: string;
-  type: Type;
-  label?: string;
-  id?: string;
-  name?: string;
-  className?: string;
-  wrapClassName?: string;
-  errorTextClassName?: string;
-  labelClassName?: string;
-  placeholder?: string;
-  disabled?: boolean;
-  maxLength?: number;
-  rules?: Rule[];
-  autoComplete?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  showPasswordEyes?: boolean;
-}
+import type { Props, Type } from '../../types/textInput';
 
 const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const {
@@ -85,17 +66,15 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
           auto-complete={autoComplete}
         />
         {showPasswordEyes && type === 'password' && (
-          <button className="b-eye-input" onClick={handleChangeInputType} type="button">
-            <span className="material-symbols-outlined">
-              {inputType === 'password' ? 'visibility' : 'visibility_off'}
-            </span>
+          <button className="eye-input" onClick={handleChangeInputType} type="button">
+            <span className="material-symbols-outlined">{inputType === 'password' ? 'visibility' : 'visibility_off'}</span>
           </button>
         )}
       </div>
       {isError &&
         errorText.map((item, index) => {
           return (
-            <span className={errorTextClassName ?? 'b-validate-error'} key={index}>
+            <span className={errorTextClassName ?? 'validate-error'} key={index}>
               {item}
             </span>
           );

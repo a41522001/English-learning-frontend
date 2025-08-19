@@ -1,5 +1,5 @@
 import type { HTTPMethod } from '@/types';
-import type { SignupRequest, LoginRequest, saveLearnedWordRequest, learnedWordsPageRequest } from '@/types/request';
+import type { SignupRequest, LoginRequest, saveLearnedWordRequest, learnedWordsPageRequest, favoriteStatus } from '@/types/request';
 import type {
   NormalResponse,
   LoginResponse,
@@ -115,6 +115,16 @@ export const useApi = () => {
   const apiGetLearnedWordCount = async (): Promise<AxiosResponse<LearnedWordCountResponse>> => {
     return await sendApi<LearnedWordCountResponse, null>('word/learnedWordCount', 'get');
   };
+
+  // 改變我的最愛狀態
+  const apiChangeFavorite = async (data: favoriteStatus): Promise<AxiosResponse<NormalResponse>> => {
+    return await sendApi<NormalResponse, favoriteStatus>('word/favorite', 'patch', data);
+  };
+
+  // 取得我的最愛單字
+  const apiGetFavoriteWord = async () => {
+    return await sendApi('word/favoriteWord', 'get');
+  };
   return {
     apiSignup,
     apiLogin,
@@ -129,5 +139,7 @@ export const useApi = () => {
     apiGetLearnedWordsPage,
     apiGetSubjectCategory,
     apiGetLearnedWordCount,
+    apiChangeFavorite,
+    apiGetFavoriteWord,
   };
 };

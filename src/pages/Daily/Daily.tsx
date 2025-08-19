@@ -1,9 +1,9 @@
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import Expansion from '../components/common/Expansion';
-import ExpansionContent from '../components/common/ExpansionContent';
+import Expansion from '../../components/common/Expansion';
+import ExpansionContent from '../../components/common/ExpansionContent';
 import { useEffect, useState } from 'react';
 import { useApi } from '@/hooks/useApi';
-import Btn from '../components/common/Btn';
+import Btn from '../../components/common/Btn';
 import type { DailyWord, WordExample } from '@/types';
 const Daily = () => {
   const [searchParams] = useSearchParams();
@@ -100,18 +100,15 @@ const Daily = () => {
   }, [subject]);
 
   return (
-    <div className="flex flex-col">
-      <h2 className="text-slate-800 font-bold text-2xl mb-1">每日單字</h2>
-      <div className="flex justify-between items-center mb-4 md:mb-6 gap-3">
+    <div className="daily_wrap">
+      <h2 className="daily_title">每日單字</h2>
+      <div className="daily_subtitle">
         <p className="text-slate-500">今天是你學習新知的最佳時機！</p>
-        <Btn
-          className="px-4 py-2 bg-emerald-600 text-nowrap text-white text-xs xs:text-base hover:bg-emerald-700 disabled:opacity-60"
-          onClick={handleSaveLearnedAllWord}
-        >
+        <Btn className="marked_learned_btn" onClick={handleSaveLearnedAllWord}>
           標示全部已學過
         </Btn>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex-col-gap-3">
         {words.map((item, index) => {
           return (
             <Expansion

@@ -7,8 +7,8 @@ interface Props {
 }
 const ExpansionContent = ({ exampleSentenceEn, exampleSentenceZn, meanZh, partOfSpeech }: Props) => {
   return (
-    <div className="bg-white p-4 border border-slate-200/80 rounded-xl last:mb-0 mb-3">
-      <div className="flex justify-between mb-3 rounded-lg">
+    <div className="expansion_content_wrap">
+      <div className="expansion_content_outline">
         <p className="text-slate-800">{meanZh}</p>
         <Badge bgColorClass="bg-indigo-100" textColorClass="text-indigo-800">
           {partOfSpeech}

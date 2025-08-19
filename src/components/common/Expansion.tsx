@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import LearnedBtn from './LearnedBtn';
+import LearnedBtn from '../../pages/Learned/LearnedBtn';
 import Badge from './Badge';
 interface Props {
   id: string;

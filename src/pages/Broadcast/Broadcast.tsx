@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import BroadcastCard from '../components/common/BroadcastCard';
+import BroadcastCard from './BroadcastCard';
 import { useApi } from '@/hooks/useApi';
 import type { SubjectCategory, User } from '@/types';
 import LogoutBtn from '@/components/common/LogoutBtn';
@@ -48,20 +48,20 @@ const Broadcast = () => {
     handleGetUserinfo();
   }, []);
   return (
-    <div className="min-h-screen h-full flex flex-col">
+    <div className="broadcast_wrap">
       <header className="bg-white">
-        <div className="max-w-5xl w-full p-4 mx-auto flex justify-between items-center">
+        <div className="broadcast_header">
           <div className="flex">
-            <h1 className="text-xl font-bold text-slate-900">單字方舟</h1>
+            <h1 className="broadcast_title">單字方舟</h1>
           </div>
           <LogoutBtn onClick={handleLogout} />
         </div>
       </header>
-      <main className="grow flex-center py-10">
-        <div className="max-w-5xl w-full px-4 sm:px-8 mx-auto flex flex-col items-center text-center">
-          <p className="font-bold text-4xl text-slate-800 mb-2">早安, {user.username}!</p>
-          <p className="text-lg text-slate-600 mb-10">選擇一個主題，開始今天的學習挑戰吧！</p>
-          <div className="grid xs:grid-cols-2 lg:grid-cols-3 gap-6">
+      <main className="broadcast_main">
+        <div className="broadcast_main_container">
+          <p className="broadcast_main_title">早安, {user.username}!</p>
+          <p className="broadcast_main_subtitle">選擇一個主題，開始今天的學習挑戰吧！</p>
+          <div className="broadcast_main_layout">
             {category.map(({ title, content, subject, bgColor, hoverColor, icon, iconColor }, index) => {
               return (
                 <BroadcastCard

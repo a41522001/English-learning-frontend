@@ -20,17 +20,25 @@
 @source inline("bg-green-300 group-hover:bg-green-400 text-green-500");
 @source inline("bg-stone-300 group-hover:bg-stone-400 text-stone-500");
 @source inline("bg-sky-300 group-hover:bg-sky-400 text-sky-500");
+@source inline("text-center");
+@source inline("border-slate-200/80");
 @import './component/btn.css';
 @import './component/textInput.css';
 @import './component/dialog.css';
 @import './component/loading.css';
 @import './component/learnedBtn.css';
 @import './component/expansion.css';
+@import './component/expansionContent.css';
 @import './component/logoutBtn.css';
 @import './component/table.css';
+@import './component/pagination.css';
+@import './component/broadcastCard.css';
+@import './component/drawer.css';
 @import './page/sideBar.css';
 @import './page/daily.css';
 @import './page/learned.css';
+@import './page/broadcast.css';
+@import './page/favorite.css';
 @layer base {
   body {
     background-color: #f1f5f9;
@@ -43,10 +51,21 @@
     @apply max-w-4xl w-full mx-auto;
   }
 }
+@utility flex-col-gap-1 {
+  @apply flex flex-col gap-1;
+}
+@utility flex-col-gap-3 {
+  @apply flex flex-col gap-3;
+}
 @utility flex-center {
   @apply flex items-center justify-center;
 }
 @theme {
   --breakpoint-xs: 30rem;
+  --breakpoint-xxs: 25rem;
   --animate-spin: spin 0.5s linear infinite;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1;
 }

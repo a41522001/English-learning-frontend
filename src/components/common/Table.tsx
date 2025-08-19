@@ -1,9 +1,10 @@
 import clsx from 'clsx';
-import React, { useMemo, useState, forwardRef, useImperativeHandle } from 'react';
+import { useMemo, useState, forwardRef, useImperativeHandle } from 'react';
 import type { Item, Props, TableHandle } from '../../types/table';
 const assignTextAlign = (align: any) => (align ? `text-${align}` : 'text-left');
 
 const Table = forwardRef<TableHandle, Props>(
+  // TODO: width之後要加上去
   ({ headers = [], items = [], width = '100%', borderColor = '', bgColor = '', onClick, extraConfig, slots }, ref) => {
     const [currentIndex, setCurrentIndex] = useState<number>(-1);
     const borderClass = borderColor ? `border-${borderColor}` : 'border-black';
@@ -38,6 +39,7 @@ const Table = forwardRef<TableHandle, Props>(
     const clearCurrentIndex = () => {
       setCurrentIndex(-1);
     };
+
     const viewAppend = useMemo(() => {
       if (!extraConfig?.append) {
         return [];
@@ -65,6 +67,7 @@ const Table = forwardRef<TableHandle, Props>(
       });
       return result;
     }, [extraConfig]);
+
     const handleOnClick = (row: Item, index: number) => {
       setCurrentIndex(index);
       if (onClick) {
@@ -97,8 +100,8 @@ const Table = forwardRef<TableHandle, Props>(
                 >
                   {ViewPrepend.map((prep, prepIndex) => {
                     return (
-                      <td className={clsx('table_space', prep.align)} key={prepIndex}>
-                        {prep.child}
+                      <td className={clsx('table_space', prep.align, rowIndex === currentIndex && 'text-white')} key={prepIndex}>
+                        {typeof prep.child === 'function' ? prep.child(item, rowIndex) : prep.child}
                       </td>
                     );
                   })}
@@ -116,7 +119,7 @@ const Table = forwardRef<TableHandle, Props>(
                   {viewAppend.map((app, appIndex) => {
                     return (
                       <td className={clsx('table_space', app.align, rowIndex === currentIndex && 'text-white')} key={appIndex}>
-                        {app.child}
+                        {typeof app.child === 'function' ? app.child(item, rowIndex) : app.child}
                       </td>
                     );
                   })}
