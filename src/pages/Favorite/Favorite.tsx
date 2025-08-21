@@ -65,12 +65,19 @@ const Favorite = () => {
         <p className="text-slate-500">收藏屬於你的字彙，讓學習更有溫度。</p>
         <TextInput className="favorite_search" value={search} onChange={handleSetSearch} type="text" placeholder="搜索..." />
       </div>
-      <div className="favorite_content">
-        {words.map((item) => {
-          return <FavoriteCard key={item.id} word={item.word} id={item.id} onClick={handleViewDetail} onCancel={handleCancelCollect} />;
-        })}
-      </div>
-      <FavoriteDialog {...examples} isOpen={isOpen} onClose={handleCloseDialog} onCancel={handleCancelCollect} />
+      {words.length === 0 ? (
+        <p className="favorite_empty">從第一個最愛開始，打造專屬字庫！</p>
+      ) : (
+        <>
+          {' '}
+          <div className="favorite_content">
+            {words.map((item) => {
+              return <FavoriteCard key={item.id} word={item.word} id={item.id} onClick={handleViewDetail} onCancel={handleCancelCollect} />;
+            })}
+          </div>
+          <FavoriteDialog {...examples} isOpen={isOpen} onClose={handleCloseDialog} onCancel={handleCancelCollect} />
+        </>
+      )}
     </div>
   );
 };

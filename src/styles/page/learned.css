@@ -10,6 +10,9 @@
 .learned_search {
   @apply px-3 py-2 bg-white border-slate-300 focus:outline-indigo-400;
 }
+.learned_empty {
+  @apply text-center py-10 text-2xl font-bold text-slate-900;
+}
 .review_btn {
   @apply cursor-pointer text-indigo-600 hover:text-indigo-500 group-data-[active=true]:text-white group-data-[active=true]:hover:text-white/90;
 }

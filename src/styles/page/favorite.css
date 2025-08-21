@@ -13,6 +13,9 @@
 .favorite_content {
   @apply grid xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bg-white border border-slate-200 rounded-2xl p-7 xs:p-4 max-h-[45rem] overflow-auto;
 }
+.favorite_empty {
+  @apply text-center py-10 text-2xl font-bold text-slate-900;
+}
 .favorite_card {
   @apply border border-slate-200 rounded-2xl p-5 xxs:p-8 xs:p-5 flex flex-col shadow-sm transition hover:border-indigo-500;
 }

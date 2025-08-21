@@ -4,6 +4,7 @@ import TextInput from '@/components/common/TextInput';
 import Btn from '@/components/common/Btn';
 import { useApi } from '@/hooks/useApi';
 import { useDialog } from '@/contexts/DialogContext';
+import type { AxiosError } from 'axios';
 interface User {
   username: string;
   email: string;
@@ -20,7 +21,7 @@ const inputClass = 'py-2 px-3 rounded-md border-slate-300 shadow-sm focus:outlin
 const labelClass = 'text-slate-700 text-sm';
 const Signup = () => {
   const { apiSignup } = useApi();
-  const { showDialog } = useDialog();
+  const { showDialog, hideDialog } = useDialog();
   const [user, setUser] = useState<User>(initialUser);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const rules = {
@@ -32,13 +33,16 @@ const Signup = () => {
     const { name, value } = e.target;
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
+
   const handleValidate = (): boolean => {
     const isHasError = Object.entries(user).some((item) => {
       const [key, value] = item;
+      // TODO: 待修正
       return rules?.[key]?.some((item) => typeof item(value) === 'string');
     });
     return isHasError;
   };
+
   const handleSignup = async () => {
     const isHasError = handleValidate();
     if (isHasError) {
@@ -51,16 +55,22 @@ const Signup = () => {
         showConfirmDialog(res.data.message);
         setUser(initialUser);
       }
-    } catch (error) {
-      // console.log(error);
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message: string }>;
+      const msg = error.response?.data?.message ?? '註冊失敗';
+      showConfirmDialog(msg);
     }
   };
 
   const showConfirmDialog = (message: string) => {
     showDialog({
-      message: message,
+      title: message,
       showCloseBtn: true,
-      children: <Btn>關閉</Btn>,
+      children: (
+        <Btn className="btn_close" onClick={hideDialog}>
+          關閉
+        </Btn>
+      ),
     });
   };
   return (

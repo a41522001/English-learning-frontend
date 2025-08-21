@@ -1,4 +1,4 @@
-import { useMemo, useState, type ChangeEvent } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TextInput from '@/components/common/TextInput';
 import Btn from '@/components/common/Btn';
@@ -6,6 +6,7 @@ import { useApi } from '@/hooks/useApi';
 // import { useDispatch } from 'react-redux';
 // import { setAccessToken } from '@/features/authSlice';
 import { useDialog } from '@/contexts/DialogContext';
+import type { AxiosError } from 'axios';
 
 interface User {
   email: string;
@@ -34,8 +35,10 @@ const Login = () => {
         const { message, data } = res.data;
         showConfirmDialog(message, false, data.isDaily);
       }
-    } catch (error) {
-      showConfirmDialog(error.response.data.message, true, false);
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message: string }>;
+      const msg = error.response?.data?.message ?? '登入失敗';
+      showConfirmDialog(msg, true, false);
     }
   };
   const handleChangePage = (isDaily: boolean) => {

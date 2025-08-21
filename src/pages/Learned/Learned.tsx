@@ -172,13 +172,19 @@ const Learned = () => {
         <p className="text-slate-500">溫故而知新，在這裡回顧你的學習足跡。</p>
         <TextInput className="learned_search" value={search} onChange={handleSetSearch} type="text" placeholder="搜索..." />
       </div>
-      <div className="flex-col-gap-3">
-        <Table headers={viewHeaders} items={words} borderColor="slate-200/80" extraConfig={extraConfig} slots={slots} ref={tableRef} />
-        <Pagination currentPage={currentPage} itemPerPage={itemPerPage} length={wordCount} setCurrentPage={handleSetCurrentPage} />
-      </div>
-      <Drawer model={model} title="複習" onClose={handleOnCloseDrawer}>
-        <ReviewCard {...reviewCardData} />
-      </Drawer>
+      {words.length === 0 ? (
+        <p className="learned_empty">這裡還空空如也，等你來填滿！</p>
+      ) : (
+        <>
+          <div className="flex-col-gap-3">
+            <Table headers={viewHeaders} items={words} borderColor="slate-200/80" extraConfig={extraConfig} slots={slots} ref={tableRef} />
+            <Pagination currentPage={currentPage} itemPerPage={itemPerPage} length={wordCount} setCurrentPage={handleSetCurrentPage} />
+          </div>
+          <Drawer model={model} title="複習" onClose={handleOnCloseDrawer}>
+            <ReviewCard {...reviewCardData} />
+          </Drawer>
+        </>
+      )}
     </div>
   );
 };

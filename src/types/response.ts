@@ -6,10 +6,8 @@ interface Response<T> {
   time: string;
 }
 export type NormalResponse = Response<null>;
-export interface LoginResponse extends Response<null> {
-  token: string;
-}
-// 每日單字
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface LoginResponse extends Response<{ isDaily: boolean }> {}
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface DailyWordResponse extends Response<Omit<DailyWord, 'isOpen' | 'content'>[]> {}
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type

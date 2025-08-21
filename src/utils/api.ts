@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { HTTPMethod } from '../types';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3000/api/',
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 10000,
   withCredentials: true,
 });
@@ -11,8 +11,8 @@ apiClient.interceptors.response.use(
   (response) => {
     return response;
   },
-  async (error) => {
-    if (error.response.status === 401) {
+  (error) => {
+    if (error.code === 'ERR_NETWORK' || error?.response?.status === 401) {
       window.location.href = '/login';
     }
     return Promise.reject(error);

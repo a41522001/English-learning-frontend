@@ -16,8 +16,8 @@ const Broadcast = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User>(initialUser);
   const [category, setCategory] = useState<SubjectCategory[]>([]);
+
   const handleSelectSubject = (subject: string) => {
-    // call API
     navigate({
       pathname: '/',
       search: createSearchParams({
@@ -25,16 +25,18 @@ const Broadcast = () => {
       }).toString(),
     });
   };
+
   const handleGetUserinfo = async () => {
     const res = await apiCheckIsDaily();
     const idDaily = res.data.data.isDaily;
-
     if (idDaily) {
       navigate('/');
     } else {
       const [resUser, resCategory] = await Promise.all([apiGetUserinfo(), apiGetSubjectCategory()]);
-      setUser(resUser.data.data);
-      setCategory(resCategory.data.data);
+      if (resUser && resCategory) {
+        setUser(resUser.data.data);
+        setCategory(resCategory.data.data);
+      }
     }
   };
 
@@ -47,6 +49,7 @@ const Broadcast = () => {
   useEffect(() => {
     handleGetUserinfo();
   }, []);
+
   return (
     <div className="broadcast_wrap">
       <header className="bg-white">
