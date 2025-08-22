@@ -13,7 +13,7 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     if (error.code === 'ERR_NETWORK' || error?.response?.status === 401) {
-      // window.location.href = '/login';
+      window.location.href = '/login';
     }
     return Promise.reject(error);
   }
