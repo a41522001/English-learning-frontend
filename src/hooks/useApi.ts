@@ -16,6 +16,7 @@ import api from '@/utils/api';
 import type { AxiosError, AxiosResponse } from 'axios';
 import { useLoading } from '@/contexts/LoadingContext';
 import { useDialog } from '@/contexts/DialogContext';
+import { useNavigate } from 'react-router-dom';
 interface ApiOption {
   headers?: Record<string, string>;
   isThrowError?: boolean; // true = 錯誤交給上層處理
@@ -27,10 +28,10 @@ const baseOption: ApiOption = {
   isThrowError: false,
   isSetLoading: true,
 };
-
 export const useApi = () => {
   const { setLoading } = useLoading();
   const { showDialog } = useDialog();
+  const navigate = useNavigate();
   /**
    * 通用的請求發送器，會直接回傳回應中的 `data` 部分，並妥善處理型別。
    * @template Res - 預期回應中 `data` 的型別。
@@ -56,7 +57,9 @@ export const useApi = () => {
       console.error(error);
       const { status, response } = error as AxiosError<any>;
       const msg = response?.data.message;
-      if ([500, 429].includes(status!)) {
+      if (status === 401) {
+        navigate('/login');
+      } else if ([500, 429].includes(status!)) {
         showDialog({ title: msg, showCloseBtn: true });
       } else if (status === 404) {
         showDialog({ title: '找不到此連結', showCloseBtn: true });
@@ -117,7 +120,7 @@ export const useApi = () => {
 
   // 刪除已學過單字
   const apiDeleteLearnedWord = async (wordId: string): Promise<AxiosResponse<NormalResponse>> => {
-    return await sendApi<NormalResponse, null>(`word/learnedWord/${wordId}`, 'delete', null, { isSetLoading: false });
+    return await sendApi<NormalResponse, object>(`word/learnedWord/${wordId}`, 'delete', {}, { isSetLoading: false });
   };
 
   // 取得已學過單字
