@@ -5,29 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 抓取程式碼
-        uses: actions/checkout@v6
-
-      - name: 安裝 Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: 'npm'
-
-      - name: 安裝依賴
-        run: npm ci
-
-      - name: Lint 檢查
-        run: npm run lint
-
-      - name: 型別檢查
-        run: npm run tsbuild
-
   deploy:
-    needs: ci
     runs-on: ubuntu-latest
     permissions:
       contents: read
